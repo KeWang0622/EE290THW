@@ -8,7 +8,7 @@ dimension could be 2 or 3, represents different p norm dimensions.
 2. norm_2d(),norm_3d() draw in different dimensions. 
 you can call the functions in this way:
     Paint = Paint_F(2)
-    Paint.pai
+    Paint.paint()
 
 For the assignment 2
 Both you can use "draw_polytope.py" or "import draw_polytope" and call functions
