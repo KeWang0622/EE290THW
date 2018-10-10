@@ -48,10 +48,10 @@ class Paint_F(object):
         plt.plot(x_05,-p_value(x_05,2),color = 'c')
         plt.plot(-x_05,p_value(x_05,2),color = 'c')
         plt.plot(-x_05,-p_value(x_05,2),color = 'c')
-        plt.plot(x_05,p_value(x_05,10000),color = 'b') # to simulate infinity
-        plt.plot(x_05,-p_value(x_05,10000),color = 'b')
-        plt.plot(-x_05,p_value(x_05,10000),color = 'b')
-        plt.plot(-x_05,-p_value(x_05,10000),color = 'b')        
+        plt.plot(x_05,p_value(x_05,1000000),color = 'b') # to simulate infinity
+        plt.plot(x_05,-p_value(x_05,1000000),color = 'b')
+        plt.plot(-x_05,p_value(x_05,1000000),color = 'b')
+        plt.plot(-x_05,-p_value(x_05,1000000),color = 'b')        
         plt.ylim(-2, 2)
         plt.xlim(-2, 2)
         plt.grid(True)
@@ -82,7 +82,7 @@ class Paint_F(object):
         self.self_plot_k(2)
         self.self_plot_k(1)
         self.self_plot_k(0.5)
-        self.self_plot_k(10000)
+        self.self_plot_k(1000000)
 #        plt.subplot(2,2,2)
 #        z1 = p3_value(X_3,Y_3,1)
 #        ax.plot_surface(X_3, Y_3, z1, rstride=1, cstride=1, cmap='bone')
