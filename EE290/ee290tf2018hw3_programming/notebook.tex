@@ -1,0 +1,1234 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Homework 3}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{from} \PY{n+nn}{ipywidgets} \PY{k}{import} \PY{n}{interact}\PY{p}{,} \PY{n}{widgets}
+        \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{display}
+        \PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{linalg}
+        \PY{k+kn}{from} \PY{n+nn}{IPython} \PY{k}{import} \PY{n}{display}
+        \PY{k+kn}{import} \PY{n+nn}{pywt}
+        \PY{k+kn}{from} \PY{n+nn}{skimage} \PY{k}{import} \PY{n}{data}
+        \PY{k+kn}{import} \PY{n+nn}{skimage}
+\end{Verbatim}
+
+
+    \section{EE290T Homework 3 - Programming
+Assignment}\label{ee290t-homework-3---programming-assignment}
+
+\subsection{Compressed Sensing with the Single Pixel
+Camera}\label{compressed-sensing-with-the-single-pixel-camera}
+
+\subsubsection{Part 1 - Single Pixel Camera with native
+Sparsity}\label{part-1---single-pixel-camera-with-native-sparsity}
+
+In this exercise, we'll explore the single pixel camera and see how
+sparse models can be used to recover an image using a single pixel or
+diode. This problem is based on
+\textbf{\href{https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=4472247}{Duarte,
+Marco F., et al. "Single-pixel imaging via compressive sampling." IEEE
+signal processing magazine 25.2 (2008): 83-91}}
+
+In the single pixel camera formulation, a scene is imaged onto a digital
+micromirror device (DMD), which either lets the correspoding pixel of
+the scene pass through or blocks the pixel. This plane is then focused
+onto a single diode. The measurement is the inner product between the
+scene (N pixel sampled) \(x\) and the 2-D mask, \(\phi\).
+
+\[ y[m] = \langle x,\phi_m \rangle \]
+
+You can see an example of a single measurement below, which is the inner
+product of the vectorized scene and vectorized mask:
+
+As we take multiple measurements, we build up a sensing matrix, \(A\)
+that is of size \(mxN\), where \(m\) is the number of measurements
+taken.
+
+If \(m = N\), we can solve for the image using a matrix inverse. If
+\(m<<N\), we need to use compressive sensing techniques to recover the
+scene.
+
+    \textbf{(a)} Given the image below (sparse points in 2D), plot the
+\(\ell_2\) error between the recovered image and the ground truth scene,
+\(e = \| \hat{x} - x\|_2^2\) as a function of \(\delta = m/n\) using a
+pseudoinverse to solve for the scene:
+
+\[\hat{x} = A^\dagger y\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{k}{def} \PY{n+nf}{err\PYZus{}l2norm}\PY{p}{(}\PY{n}{x1}\PY{p}{,}\PY{n}{x0}\PY{p}{)}\PY{p}{:}
+             \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{x1}\PY{o}{\PYZhy{}}\PY{n}{x0}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{32}             \PY{c+c1}{\PYZsh{} image height/width}
+        \PY{n}{N} \PY{o}{=} \PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}           \PY{c+c1}{\PYZsh{} flat image}
+        \PY{n}{m} \PY{o}{=} \PY{l+m+mi}{32}\PY{o}{*}\PY{l+m+mi}{32}              \PY{c+c1}{\PYZsh{} number of measurements }
+        
+        \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{100}            \PY{c+c1}{\PYZsh{} number of non\PYZhy{}zero entries in the image}
+        
+        \PY{c+c1}{\PYZsh{} Create image x}
+        \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{n}{k}\PY{p}{)}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{n}{k}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Create sparse vector }
+        \PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{permutation}\PY{p}{(}\PY{n}{N}\PY{p}{)}\PY{p}{]}\PY{p}{;}
+        
+        
+        \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Create measurement matrix, A}
+        \PY{n}{A}\PY{p}{[}\PY{n}{A}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+        
+        \PY{n}{y} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{x}\PY{p}{)}  \PY{c+c1}{\PYZsh{} y=Ax}
+        \PY{n}{x\PYZus{}adj} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} x\PYZus{}hat = A.T.dot(y)}
+        \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{projected\PYZus{}gradient\PYZus{}descent}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}
+        \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{np}\PY{o}{.}\PY{n}{shape}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scene, x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{A}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1 mask, phi[0]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}adj}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scene, x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scene, x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{def} \PY{n+nf}{error\PYZus{}img}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{normalize} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}\PY{p}{:}
+            \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{32}             \PY{c+c1}{\PYZsh{} image height/width}
+            \PY{n}{N} \PY{o}{=} \PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}           \PY{c+c1}{\PYZsh{} flat image}
+        \PY{c+c1}{\PYZsh{}     m = N              \PYZsh{} number of measurements }
+        
+            \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{100}            \PY{c+c1}{\PYZsh{} number of non\PYZhy{}zero entries in the image}
+        
+            \PY{c+c1}{\PYZsh{} Create image x}
+            \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{n}{k}\PY{p}{)}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{n}{k}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Create sparse vector }
+            \PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{permutation}\PY{p}{(}\PY{n}{N}\PY{p}{)}\PY{p}{]}\PY{p}{;}
+        
+        
+            \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Create measurement matrix, A}
+            \PY{n}{A}\PY{p}{[}\PY{n}{A}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+        
+            \PY{n}{y} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{x}\PY{p}{)}  \PY{c+c1}{\PYZsh{} y=Ax}
+            \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+            \PY{k}{if} \PY{n}{normalize}\PY{p}{:}
+                \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{x\PYZus{}hat}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}     return err\PYZus{}l2norm(x\PYZus{}hat,x)}
+            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your Code Here \PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{n}{delta} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n}{result} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{k}{for} \PY{n}{m} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{32}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{:}
+            \PY{n}{delta}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{m}\PY{o}{/}\PY{l+m+mi}{32}\PY{p}{)}
+            \PY{n}{result}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{error\PYZus{}img}\PY{p}{(}\PY{n}{m}\PY{p}{)}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{delta}\PY{p}{,}\PY{n}{result}\PY{p}{)}\PY{p}{;} 
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Normalized h\PYZus{}hat}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/kewang/anaconda3/lib/python3.6/site-packages/ipykernel\_launcher.py:19: RuntimeWarning: invalid value encountered in true\_divide
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} Text(0.5,1,'Normalized h\_hat')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your Code Here \PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{n}{delta} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n}{result} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{k}{for} \PY{n}{m} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{32}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{:}
+            \PY{n}{delta}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{m}\PY{o}{/}\PY{l+m+mi}{32}\PY{p}{)}
+            \PY{n}{result}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{error\PYZus{}img}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{normalize}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{delta}\PY{p}{,}\PY{n}{result}\PY{p}{)}\PY{p}{;} 
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Unnormalized h\PYZus{}hat}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} Text(0.5,1,'Unnormalized h\_hat')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_7_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{(b)} Now, use the projected gradient descent algorithm that you
+wrote for the previous homework assigment to solve for \(\hat{x}\). As
+before, vary \(\delta = m/n\) and plot the \(\ell_2\) error as a
+function of \(\delta = m/n\).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{k}{def} \PY{n+nf}{sign}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{x} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                 \PY{k}{return} \PY{l+m+mi}{1}
+             \PY{k}{if} \PY{n}{x} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                 \PY{k}{return} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{uniform}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{k}{def} \PY{n+nf}{sign\PYZus{}v}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+             \PY{n}{x\PYZus{}p} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}     print(x.size)}
+             \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{size}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{x\PYZus{}p}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{sign}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+             \PY{k}{return} \PY{n}{x\PYZus{}p}
+         
+         \PY{k}{def} \PY{n+nf}{projected\PYZus{}gradient\PYZus{}descent}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{iteration}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your code here\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{At} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+             \PY{n}{Atau} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{At}\PY{p}{,}\PY{n}{A}\PY{p}{)}
+             \PY{n}{Tau} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{identity}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{Atau}
+             \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{At}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+             \PY{n}{x0} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+             \PY{n}{t} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{n}{x\PYZus{}all} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{iteration}\PY{p}{)}\PY{p}{:}
+         \PY{c+c1}{\PYZsh{}         print(i)}
+                 \PY{n}{t} \PY{o}{=} \PY{n}{t}\PY{o}{+}\PY{l+m+mi}{1}
+                 \PY{n}{x0} \PY{o}{=} \PY{n}{x\PYZus{}hat} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{Tau}\PY{p}{,}\PY{p}{(}\PY{n}{x0}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{t}\PY{p}{)}\PY{o}{*}\PY{n}{sign\PYZus{}v}\PY{p}{(}\PY{n}{x0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{x\PYZus{}all}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{x0}\PY{p}{)}
+             \PY{k}{return} \PY{n}{x\PYZus{}all}
+         
+         \PY{k}{def} \PY{n+nf}{error\PYZus{}img\PYZus{}projected}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{iteration}\PY{p}{,}\PY{n}{normalize} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}\PY{p}{:}
+             \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{32}             \PY{c+c1}{\PYZsh{} image height/width}
+             \PY{n}{N} \PY{o}{=} \PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}           \PY{c+c1}{\PYZsh{} flat image}
+         \PY{c+c1}{\PYZsh{}     m = N              \PYZsh{} number of measurements }
+         
+             \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{100}            \PY{c+c1}{\PYZsh{} number of non\PYZhy{}zero entries in the image}
+         
+             \PY{c+c1}{\PYZsh{} Create image x}
+             \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{n}{k}\PY{p}{)}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{n}{k}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Create sparse vector }
+             \PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{permutation}\PY{p}{(}\PY{n}{N}\PY{p}{)}\PY{p}{]}\PY{p}{;}
+         
+         
+             \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Create measurement matrix, A}
+             \PY{n}{A}\PY{p}{[}\PY{n}{A}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+         
+             \PY{n}{y} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{x}\PY{p}{)}  \PY{c+c1}{\PYZsh{} y=Ax}
+             \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{projected\PYZus{}gradient\PYZus{}descent}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{iteration}\PY{p}{)}
+             \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{k}{if} \PY{n}{normalize}\PY{p}{:}
+                 \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{x\PYZus{}hat}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}     return err\PYZus{}l2norm(x\PYZus{}hat,x)}
+             \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your Code Here \PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{n}{delta} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{result} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{m} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{32}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{}print(1)}
+             \PY{n}{delta}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{m}\PY{o}{/}\PY{l+m+mi}{32}\PY{p}{)}
+             \PY{n}{result}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{error\PYZus{}img\PYZus{}projected}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{l+m+mi}{500}\PY{p}{,}\PY{n}{normalize}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{delta}\PY{p}{,}\PY{n}{result}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Normalized h\PYZus{}hat}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{)}\PY{p}{;} 
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your Code Here \PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{n}{delta} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{result} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{m} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{32}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{}print(1)}
+             \PY{n}{delta}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{m}\PY{o}{/}\PY{l+m+mi}{32}\PY{p}{)}
+             \PY{n}{result}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{error\PYZus{}img\PYZus{}projected}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{l+m+mi}{500}\PY{p}{,}\PY{n}{normalize}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{delta}\PY{p}{,}\PY{n}{result}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Unnormalized h\PYZus{}hat}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{)}\PY{p}{;} 
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_11_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{(c)} Plot an example recovery for \(\delta = 0.4\) using the
+pseudoinverse method vs. using the projected subgradient method. Comment
+on the performance.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your Code Here \PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{32}             \PY{c+c1}{\PYZsh{} image height/width}
+         \PY{n}{N} \PY{o}{=} \PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}           \PY{c+c1}{\PYZsh{} flat image}
+         \PY{n}{m} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{N}\PY{o}{*}\PY{l+m+mf}{0.4}\PY{p}{)}              \PY{c+c1}{\PYZsh{} number of measurements }
+         
+         \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{100}            \PY{c+c1}{\PYZsh{} number of non\PYZhy{}zero entries in the image}
+         
+         \PY{c+c1}{\PYZsh{} Create image x}
+         \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{n}{k}\PY{p}{)}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{n}{k}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Create sparse vector }
+         \PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{permutation}\PY{p}{(}\PY{n}{N}\PY{p}{)}\PY{p}{]}\PY{p}{;}
+         
+         
+         \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Create measurement matrix, A}
+         \PY{n}{A}\PY{p}{[}\PY{n}{A}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+         
+         \PY{n}{y} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{x}\PY{p}{)}  \PY{c+c1}{\PYZsh{} y=Ax}
+         \PY{n}{x\PYZus{}adj} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+         \PY{n}{x\PYZus{}adj} \PY{o}{=} \PY{n}{x\PYZus{}adj}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{x\PYZus{}adj}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} x\PYZus{}hat = A.T.dot(y)}
+         \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{projected\PYZus{}gradient\PYZus{}descent}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}
+         \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{x\PYZus{}hat}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} np.shape(x\PYZus{}hat)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scene, x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{A}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1 mask, phi[0]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}adj}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pseudoinverse Method}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{projected Subgradient Method}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+         
+         \PY{c+c1}{\PYZsh{}plt.imshow(np.zeros((n,n))); }
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Comments: If we set \(\delta = 0.4\), Using projected subgradient method
+could successfully recover the sparse image, will using pseudoinverse
+method cannot, which means that subgradient method is effcient in this
+proble.
+
+    \textbf{(d)} Now, let's try the same experiment, but using a more
+natural scene. Here, we'll use the cameraman image from the skimage
+database. Reproduce the figure from parts (b) and (c) for this new
+scene. Comment on the performance for this image. The image is defined
+below:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{64}            \PY{c+c1}{\PYZsh{} image height/width}
+         \PY{n}{N} \PY{o}{=} \PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}           \PY{c+c1}{\PYZsh{} flat image}
+         \PY{n}{m} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{N}\PY{o}{*}\PY{l+m+mf}{0.4}\PY{p}{)}      \PY{c+c1}{\PYZsh{} number of measurements }
+         
+         \PY{n}{image} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{camera}\PY{p}{(}\PY{p}{)}
+         \PY{n}{im} \PY{o}{=}\PY{n}{skimage}\PY{o}{.}\PY{n}{transform}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+         \PY{n}{x} \PY{o}{=} \PY{n}{im}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} x = x/np.max(x)}
+         \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Create measurement matrix, A}
+         \PY{n}{A}\PY{p}{[}\PY{n}{A}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+         
+         \PY{n}{y} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{x}\PY{p}{)}  \PY{c+c1}{\PYZsh{} y=Ax}
+         \PY{n}{x\PYZus{}adj} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} x\PYZus{}hat = A.T.dot(y)}
+         \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{projected\PYZus{}gradient\PYZus{}descent}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}
+         \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{x\PYZus{}hat}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}adj}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pseudoinverse Method}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{projected Subgradient Method}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{image}\PY{p}{,}  \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/kewang/anaconda3/lib/python3.6/site-packages/skimage/transform/\_warps.py:84: UserWarning: The default mode, 'constant', will be changed to 'reflect' in skimage 0.15.
+  warn("The default mode, 'constant', will be changed to 'reflect' in "
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}296}]:} \PY{n}{x}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}296}]:} (4096,)
+\end{Verbatim}
+            
+    if \(m=0.4\times N\), both too methods could could recover the original
+images. In general, sparse recovering requires the signal to be sparse,
+which is not true in this case, for the images is not sparse. Next, if
+we increase m to \(0.99*N\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{64}            \PY{c+c1}{\PYZsh{} image height/width}
+         \PY{n}{N} \PY{o}{=} \PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}           \PY{c+c1}{\PYZsh{} flat image}
+         \PY{n}{m} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{N}\PY{o}{*}\PY{l+m+mf}{0.99}\PY{p}{)}      \PY{c+c1}{\PYZsh{} number of measurements }
+         
+         \PY{n}{image} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{camera}\PY{p}{(}\PY{p}{)}
+         \PY{n}{im} \PY{o}{=}\PY{n}{skimage}\PY{o}{.}\PY{n}{transform}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+         \PY{n}{x} \PY{o}{=} \PY{n}{im}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} x = x/np.max(x)}
+         \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Create measurement matrix, A}
+         \PY{n}{A}\PY{p}{[}\PY{n}{A}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+         
+         \PY{n}{y} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{x}\PY{p}{)}  \PY{c+c1}{\PYZsh{} y=Ax}
+         \PY{n}{x\PYZus{}adj} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} x\PYZus{}hat = A.T.dot(y)}
+         \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{projected\PYZus{}gradient\PYZus{}descent}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}
+         \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{x\PYZus{}hat}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}adj}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pseudoinverse Method}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{projected Subgradient Method}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{image}\PY{p}{,}  \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/kewang/anaconda3/lib/python3.6/site-packages/skimage/transform/\_warps.py:84: UserWarning: The default mode, 'constant', will be changed to 'reflect' in skimage 0.15.
+  warn("The default mode, 'constant', will be changed to 'reflect' in "
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    If we increase the m to 0.99 N, by using subgradient method, images
+could be roughly reconvered, while Pseudo can not.
+
+    \subsubsection{Part 2 - Single Pixel Camera with Wavelet
+Sparsity}\label{part-2---single-pixel-camera-with-wavelet-sparsity}
+
+To improve the performance of this algorithm for natural scenes, we'll
+use wavelet transforms. You can use the below wavelet functions to
+visualize the wavelet transform of the image. These functions build up
+from the pywt library and provide better visualization. (Source: wavelet
+functions taken from Miki Lustig's code:
+\textbf{https://inst.eecs.berkeley.edu/\textasciitilde{}ee123/sp18/})
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{def} \PY{n+nf}{wavMask}\PY{p}{(}\PY{n}{dims}\PY{p}{,} \PY{n}{scale}\PY{p}{)}\PY{p}{:}
+            \PY{n}{sx}\PY{p}{,} \PY{n}{sy} \PY{o}{=} \PY{n}{dims}
+            \PY{n}{res} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{n}{dims}\PY{p}{)}
+            \PY{n}{NM} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{log2}\PY{p}{(}\PY{n}{dims}\PY{p}{)}\PY{p}{)}
+            \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{NM}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{scale}\PY{o}{+}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+                \PY{n}{res}\PY{p}{[}\PY{p}{:}\PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{n}{NM}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{n}{NM}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PYZbs{}
+                    \PY{n}{res}\PY{p}{[}\PY{p}{:}\PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{n}{NM}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{n}{NM}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{]}\PY{o}{/}\PY{l+m+mi}{2}
+            \PY{k}{return} \PY{n}{res}
+        
+        
+        \PY{k}{def} \PY{n+nf}{imshowWAV}\PY{p}{(}\PY{n}{Wim}\PY{p}{,} \PY{n}{scale}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{Wim}\PY{p}{)}\PY{o}{*}\PY{n}{wavMask}\PY{p}{(}\PY{n}{Wim}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{scale}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{get\PYZus{}cmap}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        
+            
+        \PY{k}{def} \PY{n+nf}{coeffs2img}\PY{p}{(}\PY{n}{LL}\PY{p}{,} \PY{n}{coeffs}\PY{p}{)}\PY{p}{:}
+            \PY{n}{LH}\PY{p}{,} \PY{n}{HL}\PY{p}{,} \PY{n}{HH} \PY{o}{=} \PY{n}{coeffs}
+            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{hstack}\PY{p}{(}\PY{p}{(}\PY{n}{LL}\PY{p}{,} \PY{n}{LH}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{hstack}\PY{p}{(}\PY{p}{(}\PY{n}{HL}\PY{p}{,} \PY{n}{HH}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        
+        
+        \PY{k}{def} \PY{n+nf}{unstack\PYZus{}coeffs}\PY{p}{(}\PY{n}{Wim}\PY{p}{)}\PY{p}{:}
+                \PY{n}{L1}\PY{p}{,} \PY{n}{L2}  \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{hsplit}\PY{p}{(}\PY{n}{Wim}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)} 
+                \PY{n}{LL}\PY{p}{,} \PY{n}{HL} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vsplit}\PY{p}{(}\PY{n}{L1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+                \PY{n}{LH}\PY{p}{,} \PY{n}{HH} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vsplit}\PY{p}{(}\PY{n}{L2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+                \PY{k}{return} \PY{n}{LL}\PY{p}{,} \PY{p}{[}\PY{n}{LH}\PY{p}{,} \PY{n}{HL}\PY{p}{,} \PY{n}{HH}\PY{p}{]}
+        
+            
+        \PY{k}{def} \PY{n+nf}{img2coeffs}\PY{p}{(}\PY{n}{Wim}\PY{p}{,} \PY{n}{levels}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{:}
+            \PY{n}{LL}\PY{p}{,} \PY{n}{c} \PY{o}{=} \PY{n}{unstack\PYZus{}coeffs}\PY{p}{(}\PY{n}{Wim}\PY{p}{)}
+            \PY{n}{coeffs} \PY{o}{=} \PY{p}{[}\PY{n}{c}\PY{p}{]}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{levels}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                \PY{n}{LL}\PY{p}{,} \PY{n}{c} \PY{o}{=} \PY{n}{unstack\PYZus{}coeffs}\PY{p}{(}\PY{n}{LL}\PY{p}{)}
+                \PY{n}{coeffs}\PY{o}{.}\PY{n}{insert}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{c}\PY{p}{)}
+            \PY{n}{coeffs}\PY{o}{.}\PY{n}{insert}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{LL}\PY{p}{)}
+            \PY{k}{return} \PY{n}{coeffs}
+            
+            
+        \PY{k}{def} \PY{n+nf}{dwt2}\PY{p}{(}\PY{n}{im}\PY{p}{)}\PY{p}{:}
+            \PY{n}{coeffs} \PY{o}{=} \PY{n}{pywt}\PY{o}{.}\PY{n}{wavedec2}\PY{p}{(}\PY{n}{im}\PY{p}{,} \PY{n}{wavelet}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{db4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{per}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{level}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+            \PY{n}{Wim}\PY{p}{,} \PY{n}{rest} \PY{o}{=} \PY{n}{coeffs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{coeffs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+            \PY{k}{for} \PY{n}{levels} \PY{o+ow}{in} \PY{n}{rest}\PY{p}{:}
+                \PY{n}{Wim} \PY{o}{=} \PY{n}{coeffs2img}\PY{p}{(}\PY{n}{Wim}\PY{p}{,} \PY{n}{levels}\PY{p}{)}
+            \PY{k}{return} \PY{n}{Wim}
+        
+        
+        \PY{k}{def} \PY{n+nf}{idwt2}\PY{p}{(}\PY{n}{Wim}\PY{p}{)}\PY{p}{:}
+            \PY{n}{coeffs} \PY{o}{=} \PY{n}{img2coeffs}\PY{p}{(}\PY{n}{Wim}\PY{p}{,} \PY{n}{levels}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+            \PY{k}{return} \PY{n}{pywt}\PY{o}{.}\PY{n}{waverec2}\PY{p}{(}\PY{n}{coeffs}\PY{p}{,} \PY{n}{wavelet}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{db4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{per}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{(a)} Plot the wavelet transform of the image using dwt2. In
+addition, plot the sorted wavelet coefficients
+
+    \textbf{Answer}: Here, we plot the wavelet transform of the image and
+the first level coefficient
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your Code Here \PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{64}            \PY{c+c1}{\PYZsh{} image height/width}
+         \PY{n}{N} \PY{o}{=} \PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}           \PY{c+c1}{\PYZsh{} flat image}
+         \PY{n}{m} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{N}\PY{o}{*}\PY{l+m+mf}{0.4}\PY{p}{)}      \PY{c+c1}{\PYZsh{} number of measurements }
+         
+         \PY{n}{image} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{camera}\PY{p}{(}\PY{p}{)}
+         \PY{n}{im} \PY{o}{=}\PY{n}{skimage}\PY{o}{.}\PY{n}{transform}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+         \PY{n}{x} \PY{o}{=} \PY{n}{im}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{wavelet\PYZus{}i} \PY{o}{=} \PY{n}{dwt2}\PY{p}{(}\PY{n}{im}\PY{p}{)}
+         \PY{n}{coee} \PY{o}{=} \PY{n}{img2coeffs}\PY{p}{(}\PY{n}{wavelet\PYZus{}i}\PY{p}{,}\PY{n}{levels}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{imshowWAV}\PY{p}{(}\PY{n}{wavelet\PYZus{}i}\PY{p}{)}\PY{p}{;} 
+         
+         \PY{c+c1}{\PYZsh{}coee = img2coeffs(wavelet\PYZus{}i, levels=3)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{coee}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{cmap} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{get\PYZus{}cmap}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{wavelet\PYZus{}i}\PY{p}{)}\PY{p}{;} 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/kewang/anaconda3/lib/python3.6/site-packages/skimage/transform/\_warps.py:84: UserWarning: The default mode, 'constant', will be changed to 'reflect' in skimage 0.15.
+  warn("The default mode, 'constant', will be changed to 'reflect' in "
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_25_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{def} \PY{n+nf}{im\PYZus{}recon}\PY{p}{(}\PY{n}{delta}\PY{p}{)}\PY{p}{:}
+             \PY{n}{wavelet\PYZus{}d} \PY{o}{=} \PY{n}{wavelet\PYZus{}i}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+             \PY{n}{wave\PYZus{}order} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{wavelet\PYZus{}i}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{n}{wavelet\PYZus{}i}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+             \PY{n}{wave\PYZus{}order}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}delta = 0.1}
+             \PY{n}{threshold} \PY{o}{=} \PY{n}{wave\PYZus{}order}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{wave\PYZus{}order}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{delta}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+             \PY{n}{wavelet\PYZus{}d}\PY{p}{[}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{wavelet\PYZus{}d}\PY{p}{)}\PY{o}{\PYZlt{}}\PY{n}{threshold}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{n}{im\PYZus{}recon\PYZus{}delta} \PY{o}{=} \PY{n}{idwt2}\PY{p}{(}\PY{n}{wavelet\PYZus{}d}\PY{p}{)}
+             \PY{k}{return} \PY{n}{im\PYZus{}recon\PYZus{}delta}
+         \PY{c+c1}{\PYZsh{} print(threshold)}
+\end{Verbatim}
+
+
+    \textbf{(b)} Plot the resulting image when using only 10\%, 20\%, and
+50\% of the largest wavelet coefficients.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your Code Here \PYZdq{}\PYZdq{}\PYZdq{}}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{im\PYZus{}recon}\PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{,}\PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{im\PYZus{}recon}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{,}\PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{im\PYZus{}recon}\PY{p}{(}\PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{,}\PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} 
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_28_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Now, we'll use the ISTA algorithm (introduced in discussion section and
+covered in Ch 8) to reconstruct the image. This is Algorithm 8.1 in the
+textbook. You'll need to add a wavelet transform and inverse wavelet
+transform to the algorthm.
+
+\[ \boldsymbol w_{k} \leftarrow  \boldsymbol x_k - \frac{1}{L} A^*(Ax_k - y) \]
+\[ \boldsymbol x_{k+1} \leftarrow W^{-1}\text{soft}(W w_k, \lambda/L ) \]
+
+Here, \(W\) is a wavelet transform and \(W^{-1}\) is the inverse wavelet
+transform.
+
+\textbf{(c)} Imlement the ISTA algorthm with wavelet soft thresholding
+and show the recovered image for \(\delta =0.5\). What is the \(\ell_2\)
+error of this vs. the \(\ell_2\) error when using a pseudoinverse?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{def} \PY{n+nf}{soft\PYZus{}thresh}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{l}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sign}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{maximum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{l}\PY{p}{,} \PY{l+m+mf}{0.}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{]}
+        \PY{n}{b} \PY{o}{=} \PY{n}{soft\PYZus{}thresh}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{l+m+mf}{1.5}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ 0.  -0.5]
+ [ 0.5  1.5]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{k}{def} \PY{n+nf}{projected\PYZus{}gradient\PYZus{}wavlet}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{iteration}\PY{p}{,}\PY{n}{lamda}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your code here\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{c+c1}{\PYZsh{}     L = 11919.84859118095}
+             \PY{n}{AtA} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{p}{,}\PY{n}{A}\PY{p}{)}
+             \PY{n}{e} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{eig}\PY{p}{(}\PY{n}{AtA}\PY{p}{)}
+             \PY{n}{L}  \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{e}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}     e, v = np.linalg.eig(x)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{L}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}     At = np.dot(A.T,np.linalg.inv(np.dot(A,A.T)))}
+         \PY{c+c1}{\PYZsh{}     Atau = np.dot(At,A)}
+         \PY{c+c1}{\PYZsh{}     Tau = np.identity(A.shape[1]) \PYZhy{} Atau}
+         \PY{c+c1}{\PYZsh{}     x\PYZus{}hat = np.dot(At,y)}
+             \PY{n}{x0} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}     t = 0}
+             \PY{n}{x\PYZus{}all} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{iteration}\PY{p}{)}\PY{p}{:}
+         \PY{c+c1}{\PYZsh{}         if i\PYZpc{}50 ==0:}
+         \PY{c+c1}{\PYZsh{}             print(i)}
+         \PY{c+c1}{\PYZsh{}             if i!=0:}
+         \PY{c+c1}{\PYZsh{}                 plt.figure}
+         \PY{c+c1}{\PYZsh{}                 plt.imshow(np.reshape(x\PYZus{}all[\PYZhy{}1], (n,n)),cmap=\PYZsq{}gray\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}                 plt.show()}
+         \PY{c+c1}{\PYZsh{}                 plt.figure}
+         \PY{c+c1}{\PYZsh{}                 imshowWAV(wavelet\PYZus{}t)}
+         \PY{c+c1}{\PYZsh{}                 plt.show()}
+         \PY{c+c1}{\PYZsh{}                 plt.figure}
+         \PY{c+c1}{\PYZsh{}                 imshowWAV(soft\PYZus{}wave)}
+         \PY{c+c1}{\PYZsh{}                 plt.show()}
+                 \PY{n}{w} \PY{o}{=} \PY{n}{x0} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{L}\PY{p}{)}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{x0}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{y}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}         print(np.max((1/L)*np.dot(A.T,np.dot(A,x0)\PYZhy{}y)))}
+                 \PY{n}{wavelet\PYZus{}t} \PY{o}{=} \PY{n}{dwt2}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{w}\PY{p}{,}\PY{p}{(}\PY{l+m+mi}{64}\PY{p}{,}\PY{l+m+mi}{64}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{soft\PYZus{}wave} \PY{o}{=} \PY{n}{soft\PYZus{}thresh}\PY{p}{(}\PY{n}{wavelet\PYZus{}t}\PY{p}{,}\PY{n}{lamda}\PY{o}{/}\PY{n}{L}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}         print(np.median(abs(wavelet\PYZus{}t)))}
+         \PY{c+c1}{\PYZsh{}         print(lamda/L)}
+                 \PY{n}{x0} \PY{o}{=} \PY{n}{idwt2}\PY{p}{(}\PY{n}{soft\PYZus{}wave}\PY{p}{)}
+                 
+                 \PY{n}{x0} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x0}\PY{p}{,}\PY{n}{x}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}         x0 = x0/np.max(x0)}
+         \PY{c+c1}{\PYZsh{}         print(np.max(abs(w\PYZhy{}x0)))}
+         \PY{c+c1}{\PYZsh{}         print(i)}
+         \PY{c+c1}{\PYZsh{}         t = t+1}
+         \PY{c+c1}{\PYZsh{}         x0 = x\PYZus{}hat + np.dot(Tau,(x0\PYZhy{}(1/t)*sign\PYZus{}v(x0)))}
+                 \PY{n}{x\PYZus{}all}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{x0}\PY{p}{)}
+             \PY{k}{return} \PY{n}{x\PYZus{}all}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your Code Here \PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{64}            \PY{c+c1}{\PYZsh{} image height/width}
+         \PY{n}{N} \PY{o}{=} \PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}           \PY{c+c1}{\PYZsh{} flat image}
+         \PY{n}{m} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{N}\PY{o}{*}\PY{l+m+mf}{0.5}\PY{p}{)}      \PY{c+c1}{\PYZsh{} number of measurements }
+         
+         \PY{n}{image} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{camera}\PY{p}{(}\PY{p}{)}
+         \PY{n}{im} \PY{o}{=}\PY{n}{skimage}\PY{o}{.}\PY{n}{transform}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+         \PY{n}{x} \PY{o}{=} \PY{n}{im}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} x = x/np.max(x)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+         \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Create measurement matrix, A}
+         \PY{n}{A}\PY{p}{[}\PY{n}{A}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+         
+         \PY{n}{y} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{x}\PY{p}{)}  \PY{c+c1}{\PYZsh{} y=Ax}
+         \PY{n}{x\PYZus{}adj} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} x\PYZus{}hat = A.T.dot(y)}
+         \PY{c+c1}{\PYZsh{} x\PYZus{}hat = projected\PYZus{}gradient\PYZus{}descent(A,y,1000)}
+         \PY{c+c1}{\PYZsh{} x\PYZus{}hat = np.array(x\PYZus{}hat[\PYZhy{}1])}
+         \PY{c+c1}{\PYZsh{} x\PYZus{}hat = x\PYZus{}hat/np.max(x\PYZus{}hat)}
+         
+         \PY{n}{x\PYZus{}wavelet} \PY{o}{=} \PY{n}{projected\PYZus{}gradient\PYZus{}wavlet}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+m+mi}{2000}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/kewang/anaconda3/lib/python3.6/site-packages/skimage/transform/\_warps.py:84: UserWarning: The default mode, 'constant', will be changed to 'reflect' in skimage 0.15.
+  warn("The default mode, 'constant', will be changed to 'reflect' in "
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.9882352941176489
+11851.270869259328
+0
+50
+100
+150
+200
+250
+300
+350
+400
+450
+500
+550
+600
+650
+700
+750
+800
+850
+900
+950
+1000
+1050
+1100
+1150
+1200
+1250
+1300
+1350
+1400
+1450
+1500
+1550
+1600
+1650
+1700
+1750
+1800
+1850
+1900
+1950
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}adj}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pseudoinverse Method}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}wavelet}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Wavlet Proximal Method}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{im}\PY{p}{,}  \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{)}\PY{p}{;} 
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_34_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{im\PYZus{}wav} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}wavelet}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+         \PY{n}{im\PYZus{}adj} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}adj}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+         \PY{n}{err\PYZus{}wav} \PY{o}{=} \PY{n}{err\PYZus{}l2norm}\PY{p}{(}\PY{n}{im\PYZus{}wav}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{im\PYZus{}wav}\PY{p}{)}\PY{p}{,}\PY{n}{im}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{im}\PY{p}{)}\PY{p}{)}
+         \PY{n}{err\PYZus{}pse} \PY{o}{=} \PY{n}{err\PYZus{}l2norm}\PY{p}{(}\PY{n}{im\PYZus{}adj}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{im\PYZus{}adj}\PY{p}{)}\PY{p}{,}\PY{n}{im}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{im}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{err\PYZus{}wav}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{err\PYZus{}pse}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+24.933175039801313
+754.2036202631067
+
+    \end{Verbatim}
+
+    \textbf{Error}: The \(l_2 err\) of the wavlet method is:
+24.933175039801313, while the \(l_2 err\) of the pseudoinverse method
+is: 754.2036202631067
+
+    \textbf{(d)} Vary the parameter \(\lambda\) and tune this parameter
+until you achieve the lowest \(\ell_2\) error (doesn't have to be exact,
+try a few values). Plot several reconstrutions with different
+\(\lambda\) values and comment on which gives you the best performance.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your Code Here \PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{n}{img\PYZus{}recon} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{img\PYZus{}err} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{lam} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mf}{0.01}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{30}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{300}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{]}\PY{p}{:}
+         \PY{c+c1}{\PYZsh{}     print(lam)}
+             \PY{n}{x\PYZus{}wavelet\PYZus{}t} \PY{o}{=} \PY{n}{projected\PYZus{}gradient\PYZus{}wavlet}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+m+mi}{2000}\PY{p}{,}\PY{n}{lam}\PY{p}{)}
+             \PY{n}{im\PYZus{}wav\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}wavelet\PYZus{}t}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+             \PY{n}{err\PYZus{}wav\PYZus{}t} \PY{o}{=} \PY{n}{err\PYZus{}l2norm}\PY{p}{(}\PY{n}{im\PYZus{}wav\PYZus{}t}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{im\PYZus{}wav\PYZus{}t}\PY{p}{)}\PY{p}{,}\PY{n}{im}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{im}\PY{p}{)}\PY{p}{)}
+             \PY{n}{img\PYZus{}recon}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{im\PYZus{}wav\PYZus{}t}\PY{p}{)}
+             \PY{n}{img\PYZus{}err}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{err\PYZus{}wav\PYZus{}t}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{im\PYZus{}wav\PYZus{}t}\PY{p}{,}\PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{error:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{err\PYZus{}wav\PYZus{}t}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} plt.plot(); }
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+11851.270869259328
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+error: 608.9603227176378
+11851.270869259328
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+error: 591.6723735999733
+11851.270869259328
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+error: 429.2257520812806
+11851.270869259328
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+error: 24.933175039801313
+11851.270869259328
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_9.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+error: 20.592946205103615
+11851.270869259328
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_11.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+error: 27.956524022822766
+11851.270869259328
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+error: 52.73660370920395
+11851.270869259328
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_15.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+error: 75.53708040200203
+
+    \end{Verbatim}
+
+    Among the previous lamda choices, 30 results in the best reconstruction
+results, with \(l_2\: norm\) equals to 20.59
+
+    \textbf{(e)} Try a different measurement matrix than the one defined
+above (choose a different sampling scheme). Describe the scheme you've
+selected and comment on whether this achieves better or worse
+performance than the scheme above.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your Code Here \PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Your Code Here \PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{64}            \PY{c+c1}{\PYZsh{} image height/width}
+         \PY{n}{N} \PY{o}{=} \PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}           \PY{c+c1}{\PYZsh{} flat image}
+         \PY{n}{m} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{N}\PY{o}{*}\PY{l+m+mf}{0.5}\PY{p}{)}      \PY{c+c1}{\PYZsh{} number of measurements }
+         
+         \PY{n}{image} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{camera}\PY{p}{(}\PY{p}{)}
+         \PY{n}{im} \PY{o}{=}\PY{n}{skimage}\PY{o}{.}\PY{n}{transform}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+         \PY{n}{x} \PY{o}{=} \PY{n}{im}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} x = x/np.max(x)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+         \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Create measurement matrix, A}
+         \PY{n}{A}\PY{p}{[}\PY{n}{A}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{2}
+         
+         \PY{n}{y} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{x}\PY{p}{)}  \PY{c+c1}{\PYZsh{} y=Ax}
+         \PY{n}{x\PYZus{}adj} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} x\PYZus{}hat = A.T.dot(y)}
+         \PY{c+c1}{\PYZsh{} x\PYZus{}hat = projected\PYZus{}gradient\PYZus{}descent(A,y,1000)}
+         \PY{c+c1}{\PYZsh{} x\PYZus{}hat = np.array(x\PYZus{}hat[\PYZhy{}1])}
+         \PY{c+c1}{\PYZsh{} x\PYZus{}hat = x\PYZus{}hat/np.max(x\PYZus{}hat)}
+         
+         \PY{n}{x\PYZus{}wavelet} \PY{o}{=} \PY{n}{projected\PYZus{}gradient\PYZus{}wavlet}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{l+m+mi}{2000}\PY{p}{,}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{im\PYZus{}wav} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}wavelet}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+         \PY{n}{im\PYZus{}adj} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}adj}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+         \PY{n}{err\PYZus{}wav} \PY{o}{=} \PY{n}{err\PYZus{}l2norm}\PY{p}{(}\PY{n}{im\PYZus{}wav}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{im\PYZus{}wav}\PY{p}{)}\PY{p}{,}\PY{n}{im}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{im}\PY{p}{)}\PY{p}{)}
+         \PY{n}{err\PYZus{}pse} \PY{o}{=} \PY{n}{err\PYZus{}l2norm}\PY{p}{(}\PY{n}{im\PYZus{}adj}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{im\PYZus{}adj}\PY{p}{)}\PY{p}{,}\PY{n}{im}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{im}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{err\PYZus{}pse}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{err\PYZus{}wav}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/kewang/anaconda3/lib/python3.6/site-packages/skimage/transform/\_warps.py:84: UserWarning: The default mode, 'constant', will be changed to 'reflect' in skimage 0.15.
+  warn("The default mode, 'constant', will be changed to 'reflect' in "
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.9882352941176489
+18876783.087001268
+1268.1186702522218
+851.7699157625044
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}adj}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pseudoinverse Method}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{x\PYZus{}wavelet}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Wavlet Proximal Method}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{im}\PY{p}{,}  \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{)}\PY{p}{;} 
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_43_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{Comments}:Here, we try to use the sampling matrix whose value is
+positive, between \{1,2\}. By using wavlet methods and pseudoinverse
+method, this sampling matrix could not get a good results compare to the
+previous sampling matrix. In general, I think that in this method, we
+will get a much larger \(L = 18876783\) than the previous one
+\(L = 11851\), which means that the learning rate is much smaller,
+needing more iterations.
+
+    \textbf{(e)} Why don't we restrict the measurement matrix to only
+positive values and how is this achieved in practice (since the sensor
+only records positive values)?
+
+    Basically, if we restrict the measurement matrix to only positive
+values, our \(L\) will be large and needs more iterations to make the
+algorithm converge. In practice, we could use multi-records to generate
+the negtive measurement. For example, we first record a positive one,
+denote it as \(y_p = A_{positive}x\). Then we take a second measurements
+with a constant sampling matrix \(y_c = A_{constant}x\). After these
+steps, we could do substraction and get
+\(y_{practice} = (A_{positive}-mean(A_{positive})\times A_{constant})x\).
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
